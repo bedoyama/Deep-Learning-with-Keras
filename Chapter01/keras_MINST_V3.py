@@ -14,16 +14,16 @@ np.random.seed(1671)  # for reproducibility
 NB_EPOCH = 250
 BATCH_SIZE = 128
 VERBOSE = 1
-NB_CLASSES = 10   # number of outputs = number of digits
-OPTIMIZER = SGD() # optimizer, explained later in this chapter
+NB_CLASSES = 10         # number of outputs = number of digits
+OPTIMIZER = SGD()       # optimizer, explained later in this chapter
 N_HIDDEN = 128
-VALIDATION_SPLIT=0.2 # how much TRAIN is reserved for VALIDATION
+VALIDATION_SPLIT = 0.2  # how much TRAIN is reserved for VALIDATION
 DROPOUT = 0.3
 
 # data: shuffled and split between train and test sets
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
-#X_train is 60000 rows of 28x28 values --> reshaped in 60000 x 784
+# X_train is 60000 rows of 28x28 values --> reshaped in 60000 x 784
 RESHAPED = 784
 #
 X_train = X_train.reshape(60000, RESHAPED)
@@ -71,8 +71,8 @@ print('Test accuracy:', score[1])
 # list all data in history
 print(history.history.keys())
 # summarize history for accuracy
-plt.plot(history.history['acc'])
-plt.plot(history.history['val_acc'])
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
