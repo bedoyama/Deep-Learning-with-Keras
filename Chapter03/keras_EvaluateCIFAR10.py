@@ -4,8 +4,8 @@ from keras.models import model_from_json
 from keras.optimizers import SGD
 
 #load model
-model_architecture = 'cifar10_architecture.json'
-model_weights = 'cifar10_weights.h5'
+model_architecture = 'cifar10_simple_architecture.json'
+model_weights = 'cifar10_simple_weights.h5'
 model = model_from_json(open(model_architecture).read())
 model.load_weights(model_weights)
 
