@@ -7,13 +7,13 @@ from keras.optimizers import SGD, Adam, RMSprop
 
 import matplotlib.pyplot as plt
 
-#from quiver_engine import server
+# from quiver_engine import server
 # CIFAR_10 is a set of 60K images 32x32 pixels on 3 channels
 IMG_CHANNELS = 3
 IMG_ROWS = 32
 IMG_COLS = 32
 
-#constant
+# constant
 BATCH_SIZE = 128
 NB_EPOCH = 20
 NB_CLASSES = 10
@@ -22,7 +22,7 @@ VALIDATION_SPLIT = 0.2
 OPTIM = RMSprop()
 
 
-#load dataset
+# load dataset
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
 print('X_train shape:', X_train.shape)
 print(X_train.shape[0], 'train samples')
@@ -57,13 +57,10 @@ model.add(Activation('softmax'))
 model.summary()
 
 # train
-#optim = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer=OPTIM,
-	metrics=['accuracy'])
+# optim = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+model.compile(loss='categorical_crossentropy', optimizer=OPTIM, metrics=['accuracy'])
  
-history = model.fit(X_train, Y_train, batch_size=BATCH_SIZE,
-	epochs=NB_EPOCH, validation_split=VALIDATION_SPLIT, 
-	verbose=VERBOSE)
+history = model.fit(X_train, Y_train, batch_size=BATCH_SIZE, epochs=NB_EPOCH, validation_split=VALIDATION_SPLIT, verbose=VERBOSE)
  
 print('Testing...')
 score = model.evaluate(X_test, Y_test,
@@ -71,10 +68,10 @@ score = model.evaluate(X_test, Y_test,
 print("\nTest score:", score[0])
 print('Test accuracy:', score[1])
 
-#server.launch(model)
+# server.launch(model)
 
 
-#save model
+# save model
 model_json = model.to_json()
 open('cifar10_architecture.json', 'w').write(model_json)
 model.save_weights('cifar10_weights.h5', overwrite=True)
@@ -83,8 +80,8 @@ model.save_weights('cifar10_weights.h5', overwrite=True)
 # list all data in history
 print(history.history.keys())
 # summarize history for accuracy
-#plt.plot(mo)
-plt.plot(history.history['val_acc'])
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
